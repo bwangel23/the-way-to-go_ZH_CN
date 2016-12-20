@@ -17,4 +17,5 @@ func m() { fmt.Println(a) }
 func n() {
 	a := "0"
 	fmt.Println(a)
+	fmt.Println(type a)
 }
