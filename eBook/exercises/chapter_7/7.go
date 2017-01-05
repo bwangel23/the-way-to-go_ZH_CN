@@ -1,12 +1,43 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 )
 
 func main() {
 	// basicSlice()
-	sliceSum()
+	// sliceSum()
+	// makeSlice()
+	useBuffer()
+}
+
+func useBuffer() {
+	var buffer bytes.Buffer
+	// for {
+	// 	if s, ok := getNextString(); ok { //method getNextString() not shown here
+	// 		buffer.WriteString(s)
+	// 	} else {
+	// 		break
+	// 	}
+	// }
+	buffer.WriteString("hello")
+	fmt.Print(buffer.String(), "\n")
+}
+
+func makeSlice() {
+	var slice1 []int = make([]int, 5, 10)
+
+	for i := 0; i < len(slice1); i++ {
+		slice1[i] = i * 5
+	}
+
+	for i := 0; i < len(slice1); i++ {
+		fmt.Println(i, slice1[i])
+	}
+
+	fmt.Println("The length of the slice1 is ", len(slice1))
+	fmt.Println("The capiable of the slice1 is ", cap(slice1))
 }
 
 func sliceSum() {
