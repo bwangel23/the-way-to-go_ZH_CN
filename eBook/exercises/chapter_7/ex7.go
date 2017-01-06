@@ -6,21 +6,19 @@ import (
 )
 
 func main() {
-	var byteArray = [...]byte{'c', 'f', 'b'}
-	// var byteArray [3]byte = [...]byte{'c', 'f', 'b'}
-	s := string(byteArray[:])
-	fmt.Printf("%s\n", s)
+	splitBuffer()
 }
 
 func splitBuffer() {
-	var str string = "hello, xff"
-	var buf *bytes.Buffer = bytes.NewBufferString(str)
-	s1, s2 := splitBufferFunc(buf)
-	fmt.Println(s1, s2)
+	var buf *bytes.Buffer = new(bytes.Buffer)
+	buf.WriteString("hello, xff")
+
+	s1, s2 := splitBufferFunc(buf, 5)
+	fmt.Printf("%s\n%s\n", string(s1), string(s2))
 }
 
-func splitBufferFunc(buf *bytes.Buffer) (s1 []byte, s2 []byte) {
-	// s1 = buf.ReadBytes(3)
-	// s2 = buf.ReadByte()
+func splitBufferFunc(buf *bytes.Buffer, n int) (s1 []byte, s2 []byte) {
+	s1 = buf.Next(n)
+	s2 = buf.Next(buf.Len())
 	return s1, s2
 }
