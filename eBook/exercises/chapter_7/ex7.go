@@ -7,6 +7,7 @@ import (
 
 func main() {
 	var byteArray = [...]byte{'c', 'f', 'b'}
+	// var byteArray [3]byte = [...]byte{'c', 'f', 'b'}
 	s := string(byteArray[:])
 	fmt.Printf("%s\n", s)
 }
