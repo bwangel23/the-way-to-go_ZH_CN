@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 func main() {
@@ -10,7 +11,72 @@ func main() {
 	// slicePointerMap()
 	// keyInMap()
 	// orderMap()
-	showWeeks()
+	// showWeeks()
+	// sliceMap()
+	// sortMapByKey()
+	inverseMap()
+}
+
+func inverseMap() {
+	barMap := map[string]int{
+		"one":   1,
+		"two":   2,
+		"three": 3,
+		"five":  5,
+		"four":  4,
+	}
+
+	fmt.Println(barMap)
+	invMap := make(map[int]string, len(barMap))
+
+	for k, v := range barMap {
+		invMap[v] = k
+	}
+
+	fmt.Println(invMap)
+}
+
+func sortMapByKey() {
+	// 将map的key转换成slice，利用slice进行排序，然后再根据slice排序的结果输出map
+	barMap := map[string]int{
+		"one":   1,
+		"two":   2,
+		"three": 3,
+		"five":  5,
+		"four":  4,
+	}
+
+	fmt.Println("unsorted: ", barMap)
+
+	keys := make([]string, len(barMap))
+
+	i := 0
+	for k, _ := range barMap {
+		keys[i] = k
+		i++
+	}
+
+	sort.Strings(keys)
+
+	for _, k := range keys {
+		fmt.Println(k, barMap[k])
+	}
+}
+
+func sliceMap() {
+	// 这个语句创建了一个含有5个元素的切片，每个元素都是一个空的map
+	items := make([]map[int]int, 5)
+
+	for i, v := range items {
+		fmt.Println(i, v)
+	}
+
+	for i := range items {
+		items[i] = make(map[int]int, 1)
+		items[i][5] = i
+	}
+
+	fmt.Println(items)
 }
 
 func createMap() {
