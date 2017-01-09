@@ -3,12 +3,14 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"reflect"
+	"sort"
 )
 
 const LEN int = 5
 
 func main() {
-	// 数组的最大长度位2GB
+	// 数组的最大长度为2GB
 
 	// basic()
 	// initArray()
@@ -20,7 +22,70 @@ func main() {
 	// basicSlice()
 	// sliceSum()
 	// makeSlice()
-	useBuffer()
+	// useBuffer()
+	// strToSlice()
+	// subString()
+	// changeString()
+	// StringCompareFunc()
+	sortString()
+}
+
+func sortString() {
+	s := []string{"xff", "abc", "python"}
+	sort.Strings(s)
+
+	fmt.Println("Strings: ", s)
+}
+
+func StringCompareFunc() {
+	result := StringCompare([]byte("xff1"), []byte("xff"))
+
+	fmt.Println(result)
+}
+
+func StringCompare(a []byte, b []byte) (result int) {
+	for i := 0; i < len(a) && i < len(b); i++ {
+		switch {
+		case a[i] > b[i]:
+			return 1
+		case a[i] < b[i]:
+			return -1
+		}
+	}
+
+	switch {
+	case len(a) > len(b):
+		return 1
+	case len(a) < len(b):
+		return -1
+	}
+
+	return 0
+}
+
+func changeString() {
+	// 字符串是不可变的，因为要首先将其转换成字节数组，再来转变
+	s := "hello"
+	s_bytes := []byte(s)
+	s_bytes[0] = 'c'
+	s = string(s_bytes)
+	fmt.Println(s)
+}
+
+func subString() {
+	// 字符串是一个双字结构，包含只想字符数组首部的指针和一个记录字符串长度的整数
+	s := "Hello, 小芳芳"
+	substr := s[5:]
+
+	fmt.Println(substr, reflect.TypeOf(substr))
+}
+
+func strToSlice() {
+	s := "\xF0\x9F\x98\x8F\u754c中文繁體"
+
+	for i, v := range []rune(s) {
+		fmt.Printf("%d: %c\n", i, v)
+	}
 }
 
 func arraySum() {
